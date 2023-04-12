@@ -7,6 +7,7 @@
 #include "TPSBaseCharacter.generated.h"
 
 class UCameraComponent;
+class USpringArmComponent;
 
 UCLASS()
 class THIRDPERSONSHOOTER_API ATPSBaseCharacter : public ACharacter
@@ -21,7 +22,9 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	UPROPERTY(VisibleAnywhere,BlueprintReadWrite, Category = "Components")
-	UCameraComponent* CameraComponent;
+		USpringArmComponent* SpringArmComponent;
+	UPROPERTY(VisibleAnywhere,BlueprintReadWrite, Category = "Components")
+		UCameraComponent* CameraComponent;
 
 
 public:	
@@ -34,4 +37,6 @@ public:
 	private:
     void MoveForward(float Value);
     void MoveRight(float Value);
+    void LookUp(float Value);
+    void LookRight(float Value);
 };

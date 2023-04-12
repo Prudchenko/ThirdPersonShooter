@@ -4,6 +4,7 @@
 #include "TPSBaseCharacter.h"
 #include "Camera/CameraComponent.h"
 #include "Components/InputComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 
 // Sets default values
 ATPSBaseCharacter::ATPSBaseCharacter()
@@ -11,8 +12,12 @@ ATPSBaseCharacter::ATPSBaseCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+    SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>("SpringArmComponent");
+    SpringArmComponent->SetupAttachment(GetRootComponent());
+    SpringArmComponent->bUsePawnControlRotation = true;
+
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>("CameraComponent");
-    CameraComponent->SetupAttachment(GetRootComponent());
+    CameraComponent->SetupAttachment(SpringArmComponent);
 }
 
 // Called when the game starts or when spawned
@@ -36,6 +41,8 @@ void ATPSBaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATPSBaseCharacter::MoveForward);
     PlayerInputComponent->BindAxis(TEXT("MoveRight"), this, &ATPSBaseCharacter::MoveRight);
+    PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &ATPSBaseCharacter::LookUp);
+    PlayerInputComponent->BindAxis(TEXT("LookRight"), this, &ATPSBaseCharacter::LookRight);
 }
 
 void ATPSBaseCharacter::MoveForward(float Value) 
@@ -47,5 +54,15 @@ void ATPSBaseCharacter::MoveForward(float Value)
 void ATPSBaseCharacter::MoveRight(float Value) 
 {
     AddMovementInput(GetActorRightVector(), Value);
+}
+
+void ATPSBaseCharacter::LookUp(float Value) 
+{
+    AddControllerPitchInput(Value);
+}
+
+void ATPSBaseCharacter::LookRight(float Value) 
+{
+    AddControllerYawInput(Value);
 }
 
