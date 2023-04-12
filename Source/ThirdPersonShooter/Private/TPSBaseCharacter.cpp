@@ -43,6 +43,7 @@ void ATPSBaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
     PlayerInputComponent->BindAxis(TEXT("MoveRight"), this, &ATPSBaseCharacter::MoveRight);
     PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &ATPSBaseCharacter::LookUp);
     PlayerInputComponent->BindAxis(TEXT("LookRight"), this, &ATPSBaseCharacter::LookRight);
+    PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &ATPSBaseCharacter::Jump);
 }
 
 void ATPSBaseCharacter::MoveForward(float Value) 
