@@ -44,13 +44,10 @@ void ATPSBaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
     PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &ATPSBaseCharacter::LookUp);
     PlayerInputComponent->BindAxis(TEXT("LookRight"), this, &ATPSBaseCharacter::LookRight);
     PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &ATPSBaseCharacter::Jump);
-    PlayerInputComponent->BindAction(TEXT("Sprint"), IE_Pressed, this, &ATPSBaseCharacter::StartSprint);
-    PlayerInputComponent->BindAction(TEXT("Sprint"), IE_Released, this, &ATPSBaseCharacter::StopSprint);
 }
 
 void ATPSBaseCharacter::MoveForward(float Value) 
 {
-    isMovingForward = Value > 0;
     AddMovementInput(GetActorForwardVector(), Value);
 }
 
@@ -68,18 +65,5 @@ void ATPSBaseCharacter::LookUp(float Value)
 void ATPSBaseCharacter::LookRight(float Value) 
 {
     AddControllerYawInput(Value);
-}
-
-void ATPSBaseCharacter::StartSprint() 
-{
-    if (isMovingForward)
-    {
-        isSprinting = true;
-    }
-}
-
-void ATPSBaseCharacter::StopSprint()
-{
-    isSprinting = false;
 }
 

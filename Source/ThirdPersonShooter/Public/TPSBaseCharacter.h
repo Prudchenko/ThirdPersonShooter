@@ -33,16 +33,10 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-	UPROPERTY(VisibleAnywhere,BlueprintReadOnly)
-		bool isSprinting;
-	UPROPERTY(VisibleAnywhere,BlueprintReadOnly)
-		bool isMovingForward = false;
 
 	private:
     void MoveForward(float Value);
     void MoveRight(float Value);
     void LookUp(float Value);
     void LookRight(float Value);
-    void StartSprint();
-    void StopSprint();
 };
