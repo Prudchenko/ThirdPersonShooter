@@ -1,7 +1,7 @@
 // Third Person Shooter, All Rights Reserved
 
-#include "AIController.h"
 #include "Components/TPSAIPerceptionComponent.h"
+#include "AIController.h"
 #include "Components/TPSHealthComponent.h"
 #include "Perception/AISense_Sight.h"
 #include "Perception/AISense_Damage.h"

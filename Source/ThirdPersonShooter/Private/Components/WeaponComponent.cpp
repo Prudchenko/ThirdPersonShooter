@@ -136,7 +136,7 @@ void UWeaponComponent::InitAnimations()
     for (auto OneWeaponData : WeaponData)
     {
         auto ReloadFinishedNotify = FindNotifyByClass<UReloadFinishedNotify>(OneWeaponData.ReloadAnimMontage);
-        if (!ReloadFinishedNotify) checkNoEntry();
+        if (!ReloadFinishedNotify) continue;
         ReloadFinishedNotify->OnNotified.AddUObject(this, &UWeaponComponent::OnReloadFinished);
     }
 }
